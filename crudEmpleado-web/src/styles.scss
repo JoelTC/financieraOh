@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+}
+
+.btn-action-primary {
+    background-color: #3f51b5 !important;
+    color: white !important;
+    font-weight: 500px !important;
+    border-radius: 5px !important;
+    border: none !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    min-width: 120px !important;
+    height: 35px !important;
+    margin: 0 0 15px 0 !important;
+
+    &:hover {
+        background-color: #3e4da5 !important;
+        cursor: pointer !important;
+    }
+
+    &:disabled {
+        background-color: #BCC8D3 !important;
+        cursor: not-allowed !important;
+    }
+}
+
+.btn-action-warn {
+    background-color: #f44336 !important;
+
+    &:hover {
+        background-color: #d32f2f !important;
+    }
+}
+
+.btn-action-silver {
+    background-color: #b3b1b7 !important;
+
+    &:hover {
+        background-color: #818084 !important;
+    }
+}

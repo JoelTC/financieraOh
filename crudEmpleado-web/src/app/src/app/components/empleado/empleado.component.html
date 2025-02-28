@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="card p-1">
+        <!-- BOTONES -->
+        <div class="buttons-container">
+            <button class="btn btn-action-primary" (click)="abrirModal('1')" type="button">
+                Nuevo
+            </button>
+            <button class="btn btn-action-primary btn-action-warn" (click)="eliminarSeleccionados()"
+                type="button">
+                Eliminar
+            </button>
+        </div>
+
+        <!-- TABLA -->
+        <div class="table-container">
+            <table class="table">
+                <!-- Cabecera de la tabla -->
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">
+                            <input type="checkbox" (change)="masterToggle()"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()" />
+                        </th>
+                        <th scope="col" class="sortable">Documento</th>
+                        <th scope="col" class="sortable">Nombre</th>
+                        <th scope="col" class="sortable">Apellidos</th>
+                        <th scope="col" class="sortable">Edad</th>
+                        <th scope="col" class="sortable">Fecha de Nacimiento</th>
+                        <th scope="col" class="sortable">Salario</th>
+                        <th scope="col">Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of empleados()">
+                        <td class="text-center">
+                            <input type="checkbox" (click)="$event.stopPropagation()"
+                                (change)="selection.toggle(element)" [checked]="selection.isSelected(element)" />
+                        </td>
+                        <td>{{ element.documentoId }}</td>
+                        <td>{{ element.nombres }}</td>
+                        <td>{{ element.apellidoPat }} {{ element.apellidoMat }}</td>
+                        <td>{{ element.edad }}</td>
+                        <td>{{ element.fechaNacimiento }}</td>
+                        <td>{{ element.salario }}</td>
+
+                        <!-- Botones de Operaciones -->
+                        <td>
+                            <button class="btn btn-action-sm" (click)="abrirModal('3', element.documentoId)">
+                                <i class="material-icons custom-label-icon action-icon">reorder</i>
+                            </button>
+                            <button class="btn btn-action-sm" (click)="abrirModal('2', element.documentoId)">
+                                <i class="material-icons custom-label-icon action-icon">edit</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

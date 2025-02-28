@@ -1,0 +1,79 @@
+<div class="card-container">
+    <div class="row">
+        <div class="col-12">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        {{ tipoFormulario === '1' ? 'Nuevo Empleado' : tipoFormulario === '2' ? 'Editar Empleado' : 'Detalle Empleado' }}
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form class="w-100" #formulario="ngForm" (ngSubmit)="formulario.valid && enviar(formulario)">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Documento</mat-label>
+                                    <input matInput [(ngModel)]="empleado().documentoId" name="documentoId" placeholder="Documento"
+                                        #documentoId="ngModel" minlength="1" maxlength="8" required [readonly]="tipoFormulario!=='1'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Nombres</mat-label>
+                                    <input matInput [(ngModel)]="empleado().nombres" name="nombres" placeholder="Nombres"
+                                        #nombres="ngModel" minlength="1" maxlength="300" required [readonly]="tipoFormulario=='3'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Apellido Paterno</mat-label>
+                                    <input matInput [(ngModel)]="empleado().apellidoPat" name="apellidoPat" placeholder="Apellido Paterno"
+                                        #apellidoPat="ngModel" minlength="1" maxlength="300" required [readonly]="tipoFormulario=='3'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Apellido Materno</mat-label>
+                                    <input matInput [(ngModel)]="empleado().apellidoMat" name="apellidoMat" placeholder="Apellido Materno"
+                                        #apellidoMat="ngModel" minlength="1" maxlength="300" required [readonly]="tipoFormulario=='3'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Edad</mat-label>
+                                    <input matInput [(ngModel)]="empleado().edad" name="edad" placeholder="Edad" type="number"
+                                        #edad="ngModel" minlength="1" maxlength="100" required [readonly]="tipoFormulario=='3'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Salario</mat-label>
+                                    <input matInput [(ngModel)]="empleado().salario" name="salario" placeholder="Salario"
+                                        #salario="ngModel" minlength="1" type="number" required [readonly]="tipoFormulario=='3'">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Fecha de Nacimiento</mat-label>
+                                    <input matInput [(ngModel)]="empleado().auxFechaNacimiento" name="auxFechaNacimiento" [matDatepicker]="pickerInicio"
+                                        placeholder="Fecha de Nacimiento" #auxFechaNacimiento="ngModel" minlength="8" maxlength="10" readonly required>
+                                    <mat-hint>DD/MM/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerInicio [disabled]="tipoFormulario=='3'"></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="buttons-container mt-3">
+                            <button class="btn btn-action-primary" type="submit" [disabled]="!finalizado">
+                                Guardar
+                            </button>
+                            <button class="btn btn-action-primary btn-action-silver" type="button" (click)="cancelar()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
